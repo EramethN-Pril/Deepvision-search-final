@@ -1,6 +1,4 @@
-"""
-FastAPI REST API server for DeepVision Search visual product retrieval.
-"""
+
 
 import time
 from typing import Dict, Any

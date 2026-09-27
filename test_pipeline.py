@@ -1,6 +1,3 @@
-"""
-Unit tests for DeepVision Search data pipelines, model outputs, and FAISS indexing.
-"""
 
 import sys
 from pathlib import Path

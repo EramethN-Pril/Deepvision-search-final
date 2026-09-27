@@ -1,6 +1,4 @@
-"""
-GPU detection, memory management, and mixed precision configuration.
-"""
+
 
 from typing import Dict, Any, List
 import tensorflow as tf
@@ -10,14 +8,7 @@ logger = get_logger(__name__)
 
 
 def setup_gpu_environment(enable_mixed_precision: bool = True) -> Dict[str, Any]:
-    """Detects available GPUs, configures dynamic memory growth, and sets up mixed precision.
-
-    Args:
-        enable_mixed_precision: Whether to set global policy to mixed_float16.
-
-    Returns:
-        Dict[str, Any]: GPU hardware status and configuration metadata.
-    """
+   
     gpus: List[tf.config.PhysicalDevice] = tf.config.list_physical_devices("GPU")
     gpu_status = {
         "gpu_available": len(gpus) > 0,
@@ -49,7 +40,7 @@ def setup_gpu_environment(enable_mixed_precision: bool = True) -> Dict[str, Any]
 
 
 def get_device_info() -> Dict[str, Any]:
-    """Returns GPU and compute device info for diagnostic reporting."""
+   
     gpus = tf.config.list_physical_devices("GPU")
     cpus = tf.config.list_physical_devices("CPU")
     return {

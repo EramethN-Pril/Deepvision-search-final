@@ -1,7 +1,4 @@
-"""
-Grad-CAM (Gradient-weighted Class Activation Mapping) visual explainability module.
-Visualizes image regions influencing visual product search embedding representations.
-"""
+
 
 from typing import Tuple, Optional
 import numpy as np
@@ -13,15 +10,10 @@ logger = get_logger(__name__)
 
 
 class GradCAM:
-    """Computes Grad-CAM activation heatmaps for Keras CNN visual models."""
+  
 
     def __init__(self, model: tf.keras.Model, layer_name: Optional[str] = None):
-        """Initializes GradCAM visual explainer.
-
-        Args:
-            model: Keras model instance.
-            layer_name: Target Conv2D layer name. If None, automatically selects last Conv2D.
-        """
+       
         self.model = model
         if layer_name is None:
             self.layer_name = self._find_last_conv_layer()
@@ -31,7 +23,7 @@ class GradCAM:
         logger.info(f"Initialized GradCAM targeting convolutional layer: '{self.layer_name}'")
 
     def _find_last_conv_layer(self) -> str:
-        """Searches model layers in reverse order for the last Conv2D layer."""
+      
         for layer in reversed(self.model.layers):
             if isinstance(layer, (tf.keras.layers.Conv2D, tf.keras.layers.DepthwiseConv2D)):
                 return layer.name
@@ -47,15 +39,7 @@ class GradCAM:
         image_tensor: tf.Tensor,
         pred_index: Optional[int] = None
     ) -> np.ndarray:
-        """Generates Grad-CAM activation heatmap matrix.
-
-        Args:
-            image_tensor: Input image tensor of shape (1, H, W, 3).
-            pred_index: Target embedding/class index to evaluate gradients for.
-
-        Returns:
-            np.ndarray: Normalized 2D float heatmap of shape (H, W).
-        """
+       
         grad_model = tf.keras.Model(
             inputs=[self.model.inputs],
             outputs=[self.model.get_layer(self.layer_name).output, self.model.output]
@@ -86,16 +70,7 @@ class GradCAM:
         heatmap: np.ndarray,
         alpha: float = 0.4
     ) -> np.ndarray:
-        """Blends activation heatmap onto original RGB image array.
-
-        Args:
-            original_image_rgb: Original image array (H, W, 3) in uint8 [0..255].
-            heatmap: Normalized 2D float heatmap array (H, W) in [0..1].
-            alpha: Transparency factor for heatmap overlay.
-
-        Returns:
-            np.ndarray: Blended RGB image array of shape (H, W, 3).
-        """
+        
         # Resize heatmap to original image resolution
         heatmap_resized = cv2.resize(heatmap, (original_image_rgb.shape[1], original_image_rgb.shape[0]))
         heatmap_uint8 = np.uint8(255 * heatmap_resized)

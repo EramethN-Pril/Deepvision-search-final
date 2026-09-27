@@ -1,10 +1,4 @@
-"""
-Custom Deep Learning Loss functions for embedding learning.
-Implementations include:
-- Categorical Cross Entropy Loss
-- Contrastive Loss (Pairwise distance margin)
-- Triplet Loss (Anchor-Positive-Negative distance margin)
-"""
+
 
 from typing import Union, Callable
 import tensorflow as tf
@@ -14,26 +8,14 @@ logger = get_logger(__name__)
 
 
 class ContrastiveLoss(tf.keras.losses.Loss):
-    """Contrastive loss for pairwise metric learning.
-
-    L(y, d) = y * d^2 + (1 - y) * max(margin - d, 0)^2
-    where y=1 for similar pairs, y=0 for dissimilar pairs.
-    """
+   
 
     def __init__(self, margin: float = 0.5, name: str = "contrastive_loss"):
         super().__init__(name=name)
         self.margin = margin
 
     def call(self, y_true: tf.Tensor, y_pred: tf.Tensor) -> tf.Tensor:
-        """Calculates contrastive loss between paired embeddings.
-
-        Args:
-            y_true: Label tensor (1 for positive pair, 0 for negative pair).
-            y_pred: Euclidean distance tensor between pair embeddings.
-
-        Returns:
-            tf.Tensor: Scalar contrastive loss value.
-        """
+        
         y_true = tf.cast(y_true, tf.float32)
         square_pred = tf.square(y_pred)
         margin_square = tf.square(tf.maximum(self.margin - y_pred, 0.0))
@@ -41,21 +23,14 @@ class ContrastiveLoss(tf.keras.losses.Loss):
 
 
 class TripletLoss(tf.keras.losses.Loss):
-    """Triplet loss for metric embedding learning.
-
-    L(A, P, N) = max(d(A, P) - d(A, N) + margin, 0)
-    """
+   
 
     def __init__(self, margin: float = 0.5, name: str = "triplet_loss"):
         super().__init__(name=name)
         self.margin = margin
 
     def call(self, y_true: tf.Tensor, y_pred: tf.Tensor) -> tf.Tensor:
-        """Computes triplet loss from stacked/concatenated embedding predictions.
-
-        Expects y_pred to contain concatenated embeddings [Anchor, Positive, Negative]
-        or computes batch-all / batch-hard semi-hard triplet distance.
-        """
+        
         # If y_pred is batched embeddings (B, D) and y_true are labels (B,):
         # We compute pairwise euclidean distance matrix and form semi-hard triplets.
         labels = tf.cast(y_true, tf.int32)
@@ -92,16 +67,7 @@ class TripletLoss(tf.keras.losses.Loss):
 
 
 def get_loss_function(loss_name: str, margin: float = 0.5, num_classes: int = 10) -> tf.keras.losses.Loss:
-    """Factory function to retrieve selected loss instance.
-
-    Args:
-        loss_name: One of 'categorical_crossentropy', 'contrastive_loss', 'triplet_loss'.
-        margin: Margin threshold for metric losses.
-        num_classes: Number of product classification categories.
-
-    Returns:
-        tf.keras.losses.Loss: Configured loss instance.
-    """
+   
     loss_name_clean = loss_name.lower().strip()
     logger.info(f"Configuring loss function: {loss_name_clean}")
 

@@ -1,6 +1,4 @@
-"""
-Image data augmentation pipelines using TensorFlow Keras Sequential layers.
-"""
+
 
 from typing import Tuple
 import tensorflow as tf

@@ -1,7 +1,4 @@
-"""
-FAISS Vector Store and SQLite metadata persistence manager.
-Supports fast visual vector similarity search (Cosine Similarity & Euclidean Distance).
-"""
+
 
 import os
 import sqlite3
@@ -15,7 +12,6 @@ logger = get_logger(__name__)
 
 
 class FAISSVectorStore:
-    """FAISS index wrapper with SQLite metadata sync for visual similarity searching."""
 
     def __init__(
         self,
@@ -49,7 +45,7 @@ class FAISSVectorStore:
         self._init_metadata_db()
 
     def _init_metadata_db(self) -> None:
-        """Creates SQLite table for catalog metadata if not existing."""
+       
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         with sqlite3.connect(str(self.db_path)) as conn:
             cursor = conn.cursor()
@@ -68,12 +64,7 @@ class FAISSVectorStore:
         embeddings: np.ndarray,
         metadata: List[Dict[str, Any]]
     ) -> None:
-        """Adds embedding vectors and corresponding metadata into FAISS index and SQLite DB.
-
-        Args:
-            embeddings: Float32 numpy array of shape (N, embedding_dim).
-            metadata: List of dicts containing 'filename', 'filepath', 'category'.
-        """
+       
         if len(embeddings) == 0:
             logger.warning("Empty embeddings array supplied to vector store.")
             return

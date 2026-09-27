@@ -1,7 +1,3 @@
-"""
-t-SNE embedding space visualization module.
-Projects 128-dimensional product embeddings into 2D scatter plots color-coded by category.
-"""
 
 from pathlib import Path
 from typing import List, Optional
@@ -21,18 +17,7 @@ def visualize_tsne_embeddings(
     perplexity: int = 15,
     n_iter: int = 1000
 ) -> plt.Figure:
-    """Performs t-SNE reduction on embeddings and generates scatter plot visualization.
-
-    Args:
-        embeddings: Float32 matrix of shape (N, 128).
-        labels: List of category string labels corresponding to rows.
-        output_path: Optional output path to save PNG file.
-        perplexity: t-SNE perplexity parameter.
-        n_iter: Max optimization iterations.
-
-    Returns:
-        plt.Figure: Matplotlib figure object.
-    """
+   
     logger.info(f"Computing t-SNE projection for {len(embeddings)} high-dimensional vectors...")
 
     # Adjust perplexity if sample size is small

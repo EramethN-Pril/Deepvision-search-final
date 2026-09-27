@@ -1,6 +1,4 @@
-"""
-Evaluation pipeline computing Precision, Recall, F1, Top-K accuracy, Confusion Matrix, and ROC curves.
-"""
+
 
 from pathlib import Path
 from typing import Dict, Any, Tuple, List
@@ -14,14 +12,10 @@ logger = get_logger(__name__)
 
 
 class ModelEvaluator:
-    """Computes quantitative metrics and visual plots for model evaluation."""
+  
 
     def __init__(self, output_dir: Path):
-        """Initializes evaluator with plot export path.
-
-        Args:
-            output_dir: Directory where evaluation plots are saved.
-        """
+       
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -33,18 +27,7 @@ class ModelEvaluator:
         catalog_labels: np.ndarray,
         top_k: int = 5
     ) -> Dict[str, float]:
-        """Calculates Top-1 and Top-K retrieval precision/recall and accuracy.
-
-        Args:
-            query_embeddings: Query vectors matrix (N_q, D).
-            query_labels: Ground truth class integers (N_q,).
-            catalog_embeddings: Gallery catalog vectors matrix (N_c, D).
-            catalog_labels: Gallery catalog class labels (N_c,).
-            top_k: Top K nearest neighbor cut-off.
-
-        Returns:
-            Dict[str, float]: Dictionary of evaluated metrics.
-        """
+      
         top1_hits = 0
         topk_hits = 0
         total_queries = len(query_labels)

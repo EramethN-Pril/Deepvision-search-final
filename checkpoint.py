@@ -5,6 +5,7 @@ from typing import Optional
 import tensorflow as tf
 from utils.logger import get_logger
 
+
 logger = get_logger(__name__)
 
 

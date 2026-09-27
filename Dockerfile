@@ -1,4 +1,4 @@
-# Dockerfile for DeepVision Search Application
+
 FROM python:3.10-slim
 
 # Set environment variables
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install python dependencies
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
@@ -26,7 +26,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy project source code
 COPY . .
 
-# Expose ports for FastAPI (8000) and Streamlit (8501)
+# ports for FastAPI (8000) and Streamlit (8501)
 EXPOSE 8000 8501
 
 # Healthcheck

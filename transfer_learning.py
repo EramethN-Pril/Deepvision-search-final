@@ -1,6 +1,4 @@
-"""
-Transfer Learning model architecture leveraging EfficientNetB0 backbone.
-"""
+
 
 from typing import Tuple
 import tensorflow as tf
@@ -15,17 +13,7 @@ def build_efficientnet_b0_model(
     freeze_backbone: bool = True,
     l2_normalize: bool = True
 ) -> Tuple[tf.keras.Model, tf.keras.Model]:
-    """Constructs EfficientNetB0 transfer learning embedding model.
-
-    Args:
-        input_shape: Image input dimensions (H, W, C).
-        embedding_dim: Feature embedding length (default 128).
-        freeze_backbone: Whether to freeze pre-trained backbone layers initially.
-        l2_normalize: Apply unit length L2 normalization to output vector.
-
-    Returns:
-        Tuple[tf.keras.Model, tf.keras.Model]: Full model, and base backbone model reference.
-    """
+   
     inputs = tf.keras.layers.Input(shape=input_shape, name="input_image")
 
     # EfficientNet pre-trained backbone

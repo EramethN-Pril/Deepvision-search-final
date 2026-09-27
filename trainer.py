@@ -1,6 +1,4 @@
-"""
-Training engine and callback orchestration for DeepVision Search models.
-"""
+
 
 from pathlib import Path
 from typing import Dict, Any, List, Optional
@@ -13,7 +11,7 @@ logger = get_logger(__name__)
 
 
 class Trainer:
-    """Orchestrates model compilation, callbacks setup, and training execution."""
+   "
 
     def __init__(self, model: tf.keras.Model, config: Config):
         """Initializes Trainer with target model and app configuration.

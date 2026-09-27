@@ -1,13 +1,11 @@
-"""
-Pydantic data schemas for FastAPI REST API endpoints.
-"""
+
 
 from typing import List, Dict, Any
 from pydantic import BaseModel, Field
 
 
 class SearchResultItem(BaseModel):
-    """Schema for individual retrieved product search match."""
+
 
     filename: str = Field(..., description="Image filename of matched product", example="shoe001.jpg")
     similarity: float = Field(..., description="Visual similarity score percentage", example=96.2)

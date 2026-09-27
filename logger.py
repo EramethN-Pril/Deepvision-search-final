@@ -1,8 +1,4 @@
-"""
-Logging module for DeepVision Search.
 
-Provides structured and formatted log output to stdout and log files.
-"""
 
 import logging
 import sys

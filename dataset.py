@@ -1,6 +1,4 @@
-"""
-Dataset loader and input pipeline builder using the tf.data API.
-"""
+
 
 import os
 from pathlib import Path

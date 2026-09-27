@@ -1,6 +1,4 @@
-"""
-Model factory for instantiating selected neural network architectures.
-"""
+
 
 from typing import Tuple, Optional
 import tensorflow as tf
@@ -17,8 +15,7 @@ class ModelFactory:
 
     @staticmethod
     def create_model(model_config: ModelConfig) -> Tuple[tf.keras.Model, Optional[tf.keras.Model]]:
-        """Instantiates and returns the configured visual embedding model.
-
+       
         Args:
             model_config: ModelConfig object specifying model_type, image_size, etc.
 

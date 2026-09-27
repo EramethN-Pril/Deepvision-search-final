@@ -1,9 +1,3 @@
-"""
-Configuration module for DeepVision Search application.
-
-Provides centralized setting parameters for data loading, model architecture,
-training execution, FAISS index configurations, and API settings.
-"""
 
 from dataclasses import dataclass, field
 import os

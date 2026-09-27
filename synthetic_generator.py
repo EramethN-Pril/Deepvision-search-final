@@ -1,7 +1,4 @@
-"""
-Synthetic dataset generator utility for visual product search demonstrations.
-Creates catalog categories with synthetic pattern-based product images.
-"""
+
 
 from pathlib import Path
 from typing import Dict, List, Tuple
